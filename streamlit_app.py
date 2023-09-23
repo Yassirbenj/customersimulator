@@ -10,7 +10,14 @@ openai.api_key = api_key
 # Function to simulate the conversation
 def simulate_customer_interaction():
     st.sidebar.markdown("### Customer Persona")
-    customer_persona = st.sidebar.text_area("Enter the customer persona:")
+    #customer_persona = st.sidebar.text_area("Enter the customer persona:")
+    customer_persona={
+    "name": "Alice Smith",
+    "age": 28,
+    "gender": "female",
+    "occupation": "hotel owner",
+    "interests": ["travel", "technology"]
+    }
     initial_message = st.text_input("You:", "Hello, I have some questions about your product")
 
     conversation = [customer_persona, initial_message]
