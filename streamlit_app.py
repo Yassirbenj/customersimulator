@@ -1,5 +1,6 @@
 import streamlit as st
 import openai
+import json
 
 # Set your OpenAI API key here
 api_key = st.secrets["openai"]
@@ -10,14 +11,14 @@ openai.api_key = api_key
 # Function to simulate the conversation
 def simulate_customer_interaction():
     st.sidebar.markdown("### Customer Persona")
-    #customer_persona = st.sidebar.text_area("Enter the customer persona:")
-    customer_persona={
-    "name": "Alice Smith",
-    "age": 28,
-    "gender": "female",
-    "occupation": "hotel owner",
-    "interests": ["travel", "technology"]
-    }
+    customer_persona = st.sidebar.text_area("Enter the customer persona:")
+
+    try:
+        customer_persona_dict = json.loads(customer_persona)
+    except ValueError as e:
+        st.error("Error: Invalid JSON format for customer persona. Please enter it in valid JSON format.")
+        return
+    
     initial_message = st.text_input("You:", "Hello, I have some questions about your product")
 
     conversation = [customer_persona, initial_message]
