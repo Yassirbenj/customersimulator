@@ -13,6 +13,12 @@ def simulate_customer_interaction():
     customer_persona = st.sidebar.text_area("Enter the customer persona:")
     initial_message = st.text_input("You:", "Hello, I have some questions about your product")
 
+    # Convert the customer persona text input to a dictionary
+    try:
+        customer_persona_dict = eval(customer_persona)
+    except:
+        st.error("Error: Invalid customer persona format. Please enter it as a dictionary.")
+        return
     conversation = [customer_persona, initial_message]
 
     if st.button("Send"):
