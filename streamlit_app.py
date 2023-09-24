@@ -18,10 +18,12 @@ def simulate_customer_interaction():
     except ValueError as e:
         st.error("Error: Invalid JSON format for customer persona. Please enter it in valid JSON format.")
         return
+
+    st.write(type(customer_persona_dict))
     
     initial_message = st.text_input("You:", "Hello, I have some questions about your product")
 
-    conversation = [customer_persona, initial_message]
+    conversation = [customer_persona_dict, initial_message]
 
     if st.button("Send"):
         user_input = st.text_input("You:")
